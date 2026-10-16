@@ -223,6 +223,8 @@ argument_specs:
         type: int
       auditd_tcp_max_per_addr:
         type: int
+      auditd_transactional_update_reboot_ok:
+        type: raw
       auditd_transport:
         type: str
         choices:
