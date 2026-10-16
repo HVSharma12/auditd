@@ -234,3 +234,14 @@
 - name: Validate auditd_rules structure and values
   ansible.builtin.include_tasks: assert_auditd_rules.yml
   when: auditd_rules | length > 0
+
+- name: Assert auditd_transactional_update_reboot_ok is null or a boolean
+  ansible.builtin.assert:
+    that:
+      - >-
+        (auditd_transactional_update_reboot_ok is none)
+        or (auditd_transactional_update_reboot_ok is sameas true)
+        or (auditd_transactional_update_reboot_ok is sameas false)
+    fail_msg: >-
+      auditd_transactional_update_reboot_ok must be null or a boolean,
+      got {{ auditd_transactional_update_reboot_ok | type_debug }}
